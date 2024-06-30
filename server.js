@@ -12,6 +12,8 @@ app.use(express.json());
 
 
 //Create request : GET, POST, PUT and DELETE
+
+//Request POST : add new user
 app.post('/', (req, res) => {
 
     data = req.body;
@@ -31,10 +33,28 @@ app.post('/', (req, res) => {
             res.send(err)
         }
     )
-    
+})
+
+app.post('/create', async (req, res) =>{
+    try{
+        // Read data in my request from body
+     data = req.body;
+     //create new user
+     usr = new User(data);
+
+     savedUser = await usr.save();
+     
+     res.send(savedUser)
+
+
+    }catch(error){
+        res.send(error)
+
+    }
 
 
 })
+
 
 app.get( '/getAll', ()=>{
     console.log('Get Work');

@@ -2,6 +2,7 @@ const express = require('express');
 require('./config/connect');
 
 const User = require('./models/user');
+const Product = require('./models/product')
 
 
 //Hérite de toutes les fonctions disponibles dans Express.
@@ -133,6 +134,24 @@ app.delete( '/delete', ()=>{
 
 });
 
+
+
+//CRUD : Product
+//Product : create Post Request 
+app.post('/createproduct', async (req, res) => {
+    try{
+
+        data = req.body;
+        prod = new Product(data);
+
+        savedProduct = await prod.save();
+
+        res.status(200).send(savedProduct)
+
+    } catch(error){
+        res.status(400).send(error)
+    }
+})
 
 
 

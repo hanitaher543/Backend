@@ -1,4 +1,5 @@
 const express = require('express');
+require('./config/connect');
 
 
 //Hérite de toutes les fonctions disponibles dans Express.
